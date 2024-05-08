@@ -1,14 +1,14 @@
-using CK_Website_2024.Models;
+﻿using CK_Website_2024.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace CK_Website_2024.Controllers
 {
-    public class HomeController : Controller
+    public class PrivacyController : Controller
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public PrivacyController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
