@@ -3,8 +3,6 @@ name: Build and Deploy .NET Project
 on:
   push:
     branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
   workflow_dispatch:
 
 jobs:
@@ -29,8 +27,7 @@ jobs:
     - name: 'Checkout CK_Website Code'
       uses: actions/checkout@v4
     - name: Set timestamp for tag
-      run: |
-        echo "TIME_TAG=$(date +%Y%m%d_%H%M%S)" >> "$GITHUB_ENV"
+      run: echo "TIME_TAG=$(date +%Y%m%d_%H%M%S)" >> "$GITHUB_ENV"
     - name: 'Build and push image'
       uses: azure/docker-login@v1
       with:
