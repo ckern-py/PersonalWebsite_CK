@@ -9,9 +9,7 @@ on:
 
 jobs:
   NET-build:
-
     runs-on: ubuntu-latest
-
     steps:
     - name: 'Checkout CK_Website Code'
       uses: actions/checkout@v4
@@ -29,7 +27,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: 'Checkout CK_Website Code'
-      uses: actions/checkout@v4        
+      uses: actions/checkout@v4
+    - name: Set timestamp for tag
+      run: |
+        echo "TIME_TAG=$(date +%Y%m%d_%H%M%S)" >> "$GITHUB_ENV"
     - name: 'Build and push image'
       uses: azure/docker-login@v1
       with:
@@ -39,7 +40,6 @@ jobs:
     - run: |
         docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/ck_website:$TIME_TAG
         docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/ck_website:$TIME_TAG
-      env:
-        TIME_TAG: $(date +%Y%m%d_%H%M%S)
+
     
 
