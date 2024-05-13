@@ -29,11 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: 'Checkout CK_Website Code'
-      uses: actions/checkout@v4
-    # - name: 'Login via Azure CLI'
-    #   uses: azure/login@v1
-    #   with:
-    #     creds: ${{ secrets.AZURE_CREDENTIALS }}        
+      uses: actions/checkout@v4        
     - name: 'Build and push image'
       uses: azure/docker-login@v1
       with:
@@ -41,7 +37,7 @@ jobs:
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
     - run: |
-        docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/CK_Website:$(date +%Y%m%d_%H%M%S)
-        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/CK_Website:$(date +%Y%m%d_%H%M%S)
+        docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/ck_website:$(date +%Y%m%d_%H%M%S)
+        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/ck_website:$(date +%Y%m%d_%H%M%S)
     
 
