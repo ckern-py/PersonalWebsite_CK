@@ -3,6 +3,9 @@ name: Build and Deploy .NET Project
 on:
   push:
     branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+    types: ["closed"]
   workflow_dispatch:
 
 jobs:
