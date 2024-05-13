@@ -7,6 +7,9 @@ on:
     branches: [ "master" ]
   workflow_dispatch:
 
+env:
+  TIME_TAG: $(date +%Y%m%d_%H%M%S)
+
 jobs:
   NET-build:
 
@@ -37,7 +40,7 @@ jobs:
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
     - run: |
-        docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/ck_website:$(date +%Y%m%d_%H%M%S)
-        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/ck_website:$(date +%Y%m%d_%H%M%S)
+        docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/ck_website:$TIME_TAG
+        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/ck_website:$TIME_TAG
     
 
