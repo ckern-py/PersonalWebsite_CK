@@ -41,7 +41,7 @@ jobs:
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
     - run: |
-        docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/CK_Website:$(date +%F)
-        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/CK_Website:$(date +%F)
+        docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/CK_Website:$(date +%Y%m%d_%X)
+        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/CK_Website:$(date +%Y%m%d_%X)
     
 
