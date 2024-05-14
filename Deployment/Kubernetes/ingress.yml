@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ck_website-route
+  namespace: ck_website
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: colinkern.centralus.cloudapp.azure.com
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ck_website
+                port:
+                  number: 80
