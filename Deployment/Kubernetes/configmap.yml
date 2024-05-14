@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: ck_website-configmap
-  namespace: ck_website
+  name: ck-website-configmap
+  namespace: ck-website
 data:
   FirstVarHere: "__ValueHere__" 
