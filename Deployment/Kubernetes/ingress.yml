@@ -1,8 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ck_website-route
-  namespace: ck_website
+  name: ck-website-route
+  namespace: ck-website
 spec:
   ingressClassName: nginx
   rules:
@@ -13,6 +13,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: ck_website
+                name: ck-website
                 port:
                   number: 80
