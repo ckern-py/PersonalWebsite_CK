@@ -6,7 +6,7 @@ metadata:
   labels:
     app: ck-website
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: ck-website
