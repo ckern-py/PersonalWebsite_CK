@@ -4,11 +4,11 @@ using System.Diagnostics;
 
 namespace CK_Website_2024.Controllers
 {
-    public class NotFoundController : Controller
+    public class ContactController : Controller
     {
-        private readonly ILogger<NotFoundController> _logger;
+        private readonly ILogger<ContactController> _logger;
 
-        public NotFoundController(ILogger<NotFoundController> logger)
+        public ContactController(ILogger<ContactController> logger)
         {
             _logger = logger;
         }

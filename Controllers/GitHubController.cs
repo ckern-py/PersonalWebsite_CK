@@ -6,9 +6,9 @@ namespace CK_Website_2024.Controllers
 {
     public class GitHubController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<GitHubController> _logger;
 
-        public GitHubController(ILogger<HomeController> logger)
+        public GitHubController(ILogger<GitHubController> logger)
         {
             _logger = logger;
         }
