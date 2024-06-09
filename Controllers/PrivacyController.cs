@@ -6,9 +6,9 @@ namespace CK_Website_2024.Controllers
 {
     public class PrivacyController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<PrivacyController> _logger;
 
-        public PrivacyController(ILogger<HomeController> logger)
+        public PrivacyController(ILogger<PrivacyController> logger)
         {
             _logger = logger;
         }
