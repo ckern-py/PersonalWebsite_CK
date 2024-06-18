@@ -4,4 +4,4 @@ metadata:
   name: ck-website-configmap
   namespace: ck-website
 data:
-  FirstVarHere: "__ValueHere__" 
+  APPLICATIONINSIGHTS_CONNECTION_STRING: "__GetFromPortal__"
