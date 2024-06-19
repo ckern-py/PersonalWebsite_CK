@@ -13,13 +13,25 @@ namespace CK_Website_2024.Controllers
         public ContactController(ILogger<ContactController> logger, TelemetryClient telemetryClient)
         {
             _logger = logger;
-            _telemetryClient = telemetryClient;
+            this._telemetryClient = telemetryClient;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             this._telemetryClient.TrackEvent("ContactPageRequested");
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SendEmail(EmailContact emailContact)
+        {
+            if (!ModelState.IsValid)
+                return View("Error", ModelState.Values.SelectMany(v => v.Errors));
+
+            // _submitStatus = "Your email has been sent";
+            return View("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
