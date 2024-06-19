@@ -31,6 +31,7 @@ namespace CK_Website_2024.Controllers
                 return View("Error", ModelState.Values.SelectMany(v => v.Errors));
 
             // _submitStatus = "Your email has been sent";
+            ViewData["ActionStatus"] = "Your email has been sent";
             return View("Index");
         }
 
