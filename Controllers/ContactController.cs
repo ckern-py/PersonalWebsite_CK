@@ -30,6 +30,9 @@ namespace CK_Website_2024.Controllers
         {
             if (ModelState.IsValid)
             {
+                string telemetryEmail = $"UserContactEmail:\nEmail: {emailContact.PersonalEmail}\nSubject: {emailContact.EmailSubject}\nMessage: {emailContact.EmailMessage}";
+                this._telemetryClient.TrackEvent(telemetryEmail);
+                this._telemetryClient.TrackEvent("ContactPageEmailSent");
                 ViewData["ActionStatus"] = "Your email has been sent";
                 ModelState.Clear();
             }            
