@@ -4,9 +4,8 @@ using System.ComponentModel.DataAnnotations;
 namespace CK_Website_2024.Models
 {
     public class EmailContact
-    {                
-        [EmailAddress(ErrorMessage = "Please enter a valid email")]
-        [Required(AllowEmptyStrings = false)]
+    {     
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter a valid email")]
         public required string PersonalEmail { get; set; }
                 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter an email subject")]

@@ -1,6 +1,7 @@
 ﻿using CK_Website_2024.Models;
 using Microsoft.ApplicationInsights;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Diagnostics;
 
 namespace CK_Website_2024.Controllers
@@ -25,13 +26,13 @@ namespace CK_Website_2024.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult SendEmail(EmailContact emailContact)
+        public IActionResult Index(EmailContact emailContact)
         {
-            if (!ModelState.IsValid)
-                return View("Error", ModelState.Values.SelectMany(v => v.Errors));
-
-            // _submitStatus = "Your email has been sent";
-            ViewData["ActionStatus"] = "Your email has been sent";
+            if (ModelState.IsValid)
+            {
+                ViewData["ActionStatus"] = "Your email has been sent";
+                ModelState.Clear();
+            }            
             return View("Index");
         }
 
