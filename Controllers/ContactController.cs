@@ -1,7 +1,6 @@
 ﻿using CK_Website_2024.Models;
 using Microsoft.ApplicationInsights;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Diagnostics;
 
 namespace CK_Website_2024.Controllers
@@ -20,8 +19,9 @@ namespace CK_Website_2024.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            EmailContact emailContactFields = new EmailContact();
             this._telemetryClient.TrackEvent("ContactPageRequested");
-            return View();
+            return View(emailContactFields);
         }
 
         [HttpPost]
@@ -33,10 +33,14 @@ namespace CK_Website_2024.Controllers
                 string telemetryEmail = $"UserContactEmail:\nEmail: {emailContact.PersonalEmail}\nSubject: {emailContact.EmailSubject}\nMessage: {emailContact.EmailMessage}";
                 this._telemetryClient.TrackEvent(telemetryEmail);
                 this._telemetryClient.TrackEvent("ContactPageEmailSent");
-                ViewData["ActionStatus"] = "Your email has been sent";
                 ModelState.Clear();
-            }            
-            return View("Index");
+                emailContact = new EmailContact()
+                {
+                    SubmitSuccessful = true,
+                    ActionStatus = "Your email as been sent"
+                };
+            }
+            return View("Index", emailContact);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
