@@ -25,7 +25,6 @@ namespace CK_Website_2024.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Index(EmailContact emailContact)
         {
             if (ModelState.IsValid)
@@ -40,7 +39,7 @@ namespace CK_Website_2024.Controllers
                     ActionStatus = "Your email as been sent"
                 };
             }
-            return View("Index", emailContact);
+            return View(emailContact);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
