@@ -1,4 +1,4 @@
-# CK_Website_2024
+# PersonalWebsite_CK
 This repo is for a website I created that has information about me and the work I've done.
 
 ## Description
