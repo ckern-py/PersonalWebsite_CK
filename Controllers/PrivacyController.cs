@@ -22,7 +22,7 @@ namespace CK_Website_2024.Controllers
         public IActionResult Index()
         {
             this._telemetryClient.TrackEvent("PrivacyPageRequested");
-            _websiteAPI.LogPageVisit("Privacy");
+            Task.Run(() => _websiteAPI.LogPageVisit("Privacy"));
             return View();
         }
 

@@ -22,7 +22,7 @@ namespace CK_Website_2024.Controllers
         public IActionResult Index()
         {
             this._telemetryClient.TrackEvent("NotFoundPageRequested");
-            _websiteAPI.LogPageVisit("NotFound");
+            Task.Run(() => _websiteAPI.LogPageVisit("NotFound"));
             return View();
         }
 

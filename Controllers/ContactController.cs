@@ -24,7 +24,7 @@ namespace CK_Website_2024.Controllers
         {
             EmailContact emailContactFields = new EmailContact();
             this._telemetryClient.TrackEvent("ContactPageRequested");
-            _websiteAPI.LogPageVisit("Contact");
+            Task.Run(() => _websiteAPI.LogPageVisit("Contact"));
             return View(emailContactFields);
         }
 
@@ -43,7 +43,7 @@ namespace CK_Website_2024.Controllers
                     ActionStatus = "Your email as been sent"
                 };
             }
-            _websiteAPI.LogPageVisit("Contact");
+            Task.Run(() => _websiteAPI.LogPageVisit("Contact"));
             return View(emailContact);
         }
 

@@ -22,7 +22,7 @@ namespace CK_Website_2024.Controllers
         public IActionResult Index()
         {
             this._telemetryClient.TrackEvent("GitHubPageRequested");
-            _websiteAPI.LogPageVisit("GitHub");
+            Task.Run(() => _websiteAPI.LogPageVisit("GitHub"));
             return View();
         }
 
