@@ -2,6 +2,7 @@ using CK_Website_2024.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Microsoft.ApplicationInsights;
+using CK_Website_2024.DataLayer;
 
 namespace CK_Website_2024.Controllers
 {
@@ -9,16 +10,19 @@ namespace CK_Website_2024.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly TelemetryClient _telemetryClient;
+        private readonly IWebsiteAPI _websiteAPI;
 
-        public HomeController(ILogger<HomeController> logger, TelemetryClient telemetryClient)
+        public HomeController(ILogger<HomeController> logger, TelemetryClient telemetryClient, IWebsiteAPI websiteAPI)
         {
             _logger = logger;
             this._telemetryClient = telemetryClient;
+            _websiteAPI = websiteAPI;
         }
 
         public IActionResult Index()
         {
             this._telemetryClient.TrackEvent("HomePageRequested");
+            _websiteAPI.LogPageVisit("Home");
             return View();
         }
 
