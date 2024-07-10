@@ -16,7 +16,7 @@ namespace CK_Website_2024.Controllers
         {
             _logger = logger;
             this._telemetryClient = telemetryClient;
-            this._websiteAPI = websiteAPI;
+            _websiteAPI = websiteAPI;
         }
 
         public IActionResult Index()
