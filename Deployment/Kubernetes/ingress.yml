@@ -3,11 +3,21 @@ kind: Ingress
 metadata:
   name: ck-website-route
   namespace: ck-website
+  labels:
+    kcert.dev/ingress: "managed"
+  annotations:
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/affinity-mode: "persistent"
+    nginx.ingress.kubernetes.io/affinity-canary-behavior: "sticky"
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+    - colinkern.centralus.cloudapp.azure.com
+    secretName: colinkws-cert
   rules:
     - host: colinkern.centralus.cloudapp.azure.com
-    - http:
+      http:
         paths:
           - path: /
             pathType: Prefix
@@ -15,4 +25,4 @@ spec:
               service:
                 name: ck-website
                 port:
-                  number: 80
+                  number: 8080
