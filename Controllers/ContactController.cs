@@ -1,4 +1,5 @@
-﻿using CK_Website_2024.Models;
+﻿using CK_Website_2024.DataLayer;
+using CK_Website_2024.Models;
 using Microsoft.ApplicationInsights;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -9,11 +10,13 @@ namespace CK_Website_2024.Controllers
     {
         private readonly ILogger<ContactController> _logger;
         private readonly TelemetryClient _telemetryClient;
+        private readonly IWebsiteAPI _websiteAPI;
 
-        public ContactController(ILogger<ContactController> logger, TelemetryClient telemetryClient)
+        public ContactController(ILogger<ContactController> logger, TelemetryClient telemetryClient, IWebsiteAPI websiteAPI)
         {
             _logger = logger;
             this._telemetryClient = telemetryClient;
+            _websiteAPI = websiteAPI;
         }
 
         [HttpGet]
@@ -21,6 +24,7 @@ namespace CK_Website_2024.Controllers
         {
             EmailContact emailContactFields = new EmailContact();
             this._telemetryClient.TrackEvent("ContactPageRequested");
+            Task.Run(() => _websiteAPI.LogPageVisit("Contact"));
             return View(emailContactFields);
         }
 
@@ -39,6 +43,7 @@ namespace CK_Website_2024.Controllers
                     ActionStatus = "Your email as been sent"
                 };
             }
+            Task.Run(() => _websiteAPI.LogPageVisit("Contact"));
             return View(emailContact);
         }
 

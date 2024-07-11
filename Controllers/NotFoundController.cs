@@ -1,4 +1,5 @@
-﻿using CK_Website_2024.Models;
+﻿using CK_Website_2024.DataLayer;
+using CK_Website_2024.Models;
 using Microsoft.ApplicationInsights;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -9,16 +10,19 @@ namespace CK_Website_2024.Controllers
     {
         private readonly ILogger<NotFoundController> _logger;
         private readonly TelemetryClient _telemetryClient;
+        private readonly IWebsiteAPI _websiteAPI;
 
-        public NotFoundController(ILogger<NotFoundController> logger, TelemetryClient telemetryClient)
+        public NotFoundController(ILogger<NotFoundController> logger, TelemetryClient telemetryClient, IWebsiteAPI websiteAPI)
         {
             _logger = logger;
             this._telemetryClient = telemetryClient;
+            _websiteAPI = websiteAPI;
         }
 
         public IActionResult Index()
         {
             this._telemetryClient.TrackEvent("NotFoundPageRequested");
+            Task.Run(() => _websiteAPI.LogPageVisit("NotFound"));
             return View();
         }
 
