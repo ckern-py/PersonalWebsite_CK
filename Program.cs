@@ -1,4 +1,6 @@
+using CK_Website_2024.DataLayer;
 using Microsoft.ApplicationInsights.AspNetCore.Extensions;
+using Microsoft.AspNetCore.Hosting;
 
 namespace CK_Website_2024
 {
@@ -12,8 +14,13 @@ namespace CK_Website_2024
             builder.Services.AddControllersWithViews();
             builder.Services.AddApplicationInsightsTelemetry();
 
-            WebApplication app = builder.Build();
+            builder.Services.AddHttpClient<IWebsiteAPI, WebsiteAPI> ((client) =>
+            {
+                client.BaseAddress = new Uri(builder.Configuration["WEBSITE_API_ENDPOINT"]);
+            });
 
+            WebApplication app = builder.Build();
+            
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
