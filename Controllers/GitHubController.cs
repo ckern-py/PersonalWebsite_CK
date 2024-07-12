@@ -22,8 +22,9 @@ namespace CK_Website_2024.Controllers
         public IActionResult Index()
         {
             this._telemetryClient.TrackEvent("GitHubPageRequested");
+            List<GitHubProjects> projects = _websiteAPI.GetGitHubProjects();
             Task.Run(() => _websiteAPI.LogPageVisit("GitHub"));
-            return View();
+            return View(projects);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
