@@ -58,12 +58,12 @@ namespace CK_Website_2024.DataLayer
                 {
                     GitHubProjectsResponse projectsResponse = JsonConvert.DeserializeObject<GitHubProjectsResponse>(response.Content.ReadAsStringAsync().Result);
                     gitHubList = projectsResponse.GitHubProjects;
-                }
 
-                MemoryCacheEntryOptions cacheEntryOptions = new MemoryCacheEntryOptions();
-                cacheEntryOptions.SetSlidingExpiration(TimeSpan.FromHours(6));
-                cacheEntryOptions.AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(24);
-                _cache.Set("GitHubProjects", gitHubList, cacheEntryOptions);
+                    MemoryCacheEntryOptions cacheEntryOptions = new MemoryCacheEntryOptions();
+                    cacheEntryOptions.SetSlidingExpiration(TimeSpan.FromHours(6));
+                    cacheEntryOptions.AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(24);
+                    _cache.Set("GitHubProjects", gitHubList, cacheEntryOptions);
+                }
             }
 
             return gitHubList;
